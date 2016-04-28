@@ -13,7 +13,7 @@ This document is meant to guide you using SANEFALCON. For information on the alg
 - Although source code is available, please respect our work and contact us in case of (planned) commercial use.
 - Please report bugs through the issue tracker. The implementation was a one man project. Due to time constraints some parts were not well tested before uploading. Mistakes are likely to show up
 - I created this hoping it would be useful. If you can't use it, it's not useful. Please let me know of any serious trouble you ran into if you feel there is a mistake on my end.
-- I tried my best at making a readme/manual on how to use SANEFALCON. I can imagine it is rather overwhelming. If you do not understand what to do anywhere, let me know so I can update this README or the wiki.
+- I tried my best at making a readme/manual on how to use SANEFALCON. I can imagine it is rather overwhelming. If you do not understand what to do somewhere, let me know so I can update this README or the wiki.
 - This implementation is not well done, I know. It's not user friendly, it's difficult to use and it's not as fast as it could be. It's a prototype of the method. If I had enough time I'd love to do a proper (re-)implementation but my current contract does not last forever.
 - I created a chat linked to this project on [gitter.im](https://gitter.im/rstraver/sanefalcon). Please use this to discuss this project. Anyone can join using a *free* GitHub account. Click the link or the badge above to join.
 - There is an overview diagram at the bottom of this page. Don't forget to use it to understand where you are and where you should be heading.
@@ -175,12 +175,12 @@ The final result should contain the samplename in the first column, then followe
 Use the python script as follows to see how far we've come and train a simple convertor for the future:  
 	> `python predictor.py trainNucl trainRef outBaseName`
 
-This script has 3 main and 2 optional arguments:
-1. `trainNucl` Training nucleosome profiles
-2. `trainRef` Training reference data
-3. `outBaseName` Output basename
-s1. Test nucleosome profiles
-s2. Test reference data
+This script has 3 main and 2 optional arguments:  
+1. `trainNucl` Training nucleosome profiles  
+2. `trainRef` Training reference data  
+3. `outBaseName` Output basename  
+s1. Test nucleosome profiles  
+s2. Test reference data  
 
 If supplied, it will directly analyze your test samples if they were provided in the same formats as the training samples (arguments s1 and s2). The script will match sample names in nucleosome profile files with names in the reference files, taking the first column for each as containing the names. The reference data should contain the estimated fetal fraction based on an existing method in the second column, for example the chromosome Y frequency for male pregnancies. The output will provide a plot showing the correlation profile and a scatterplot with the estimated fraction using SANEFALCON vs the reference values where available.
 
@@ -198,15 +198,15 @@ This method is easier and was created later on. This allows implementation in pi
 
 If you trained the model previously, it created a `outBaseName.model` file. This file describes how the nucleosome profile correlates with the fetal fraction and what linear formula to use to shift its output to the same scale as the original input reference fetal fraction data.
 
-There is a shell script that prepares the nucleosome profiles for a small python script:
+There is a shell script that prepares the nucleosome profiles for a small python script:  
 	> `predict.sh trainedModel testProfile`
 
-where:
+where:  
 1. `trainedModel` is the `outBaseName.model` file  
 2. `testProfile` is the basename of files that contain the forward and reverse nucleosome profile per chromosome for a single test sample.  
 
 It will add nucleosome profiles per strand into a single file and apply the model to turn this into an estimate of the fetal fraction. Output is saved into `testProfile.ff`.
 
 ## Schematic overview of the scripts
-![ ](http://rstraver.github.io/img/sanefalcon_diag.png  "Schematic overview of SANEFALCON")
-Overview of the whole SANEFALCON script. Small numbers in the top right of boxes are the subsections in this document where the step is described.
+![ ](http://rstraver.github.io/img/sanefalcon_diag.png  "Schematic overview of SANEFALCON")  
+*Overview of the whole SANEFALCON script. Small numbers in the top right of boxes are the subsections in this document where the step is described.*
