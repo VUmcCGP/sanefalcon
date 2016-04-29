@@ -1,8 +1,5 @@
 [![Gitter](https://badges.gitter.im/rstraver/sanefalcon.svg)](https://gitter.im/rstraver/sanefalcon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) 
 
-**This is a pre-release file containing only the (incomplete) readme information. Please come back when the project is fully released.**
-
-
 # SANEFALCON
 ### Single reAds Nucleosome-basEd FetAL fraCtiON
 #### Calculating the fetal fraction for noninvasive prenatal testing based on genome-wide nucleosome profiles
