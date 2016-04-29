@@ -191,7 +191,7 @@ All steps for test samples have been described in the training steps, but now th
 - Feed the new data as argument 4 in the final training phase, 5th argument should be fractions obtained in the same way as for the training reference to check the estimation quality of SANEFALCON. If not available just point to the same file as the second argument, as a result no samples will match so SANEFALCON will assume these samples are female and thus unknown. 
 
 ### Alternative method
-This method is easier and was created later on. This allows implementation in pipelines for day to day use. The original method is ketp as it provides insight on the data and algorithm.
+This method is easier and was created later on. This allows implementation in pipelines for day to day use. The original method is kept as it provides insight on the data and algorithm.
 
 If you trained the model previously, it created a `outBaseName.model` file. This file describes how the nucleosome profile correlates with the fetal fraction and what linear formula to use to shift its output to the same scale as the original input reference fetal fraction data.
 
