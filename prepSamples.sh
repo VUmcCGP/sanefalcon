@@ -30,7 +30,7 @@ do
 			chr$ARG_TASKID \
 			-f 16 -F 4 -q 1 | \
 			$SCRIPT_PYTHON $SCRIPT_RETRO | \
-					awk '{print $4+50}' \
+					awk '{print ($4 + length($10) - 1)}' \
 					    > $OUTFILE.$ARG_TASKID.start.rev
 		done
 done
