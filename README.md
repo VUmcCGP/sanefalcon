@@ -41,7 +41,6 @@ We used BWA to map our data. To ensure we only have perfect matches we ignore re
 ### 2.2 Extracting read start positions
 For the technique we applied we are only interested in read start positions. Any information such as the read length etc is neglected as it does not provide us any information. To remove read tower and other side effects of sequencing and mapping we suggest running the data through the RETRO filter as we created for WISECONDOR. In SANEFALCON we supply a slightly altered version to allow extraction of the the read positions. There is no problem replacing this with any method you desire, just be sure to shift the start position for reads mapped to the reverse strand:
 The BAM format writes the first base pair position of a read. This is not the first in the sequence of the fragment, instead it is the lowest value position the read covers: it is always the leftmost end seen from the reference genome. This is not where the read fragment started, the real position is *(the position in the BAM file) + (the length of the read) - 1*.
-The -1 is caused by the fact it is the position covered. We used 51 bp reads, so any read mapped to the reverse strand is actually starting 50 bp downstream, hence the +50 in the script. If you choose to use a different read length, alter this number accordingly. If you use some clipping, introducing variable read lengths, you will have to determine the length per read and use this number instead.
 
 To run the sample extraction, run:  
 	> `./prepSamples.sh $INDIR $OUTDIR`
