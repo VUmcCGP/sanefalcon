@@ -1,8 +1,5 @@
 [![Gitter](https://badges.gitter.im/rstraver/sanefalcon.svg)](https://gitter.im/rstraver/sanefalcon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) 
 
-**This is a pre-release file containing only the (incomplete) readme information. Please come back when the project is fully released.**
-
-
 # SANEFALCON
 ### Single reAds Nucleosome-basEd FetAL fraCtiON
 #### Calculating the fetal fraction for noninvasive prenatal testing based on genome-wide nucleosome profiles
@@ -43,8 +40,7 @@ We used BWA to map our data. To ensure we only have perfect matches we ignore re
 
 ### 2.2 Extracting read start positions
 For the technique we applied we are only interested in read start positions. Any information such as the read length etc is neglected as it does not provide us any information. To remove read tower and other side effects of sequencing and mapping we suggest running the data through the RETRO filter as we created for WISECONDOR. In SANEFALCON we supply a slightly altered version to allow extraction of the the read positions. There is no problem replacing this with any method you desire, just be sure to shift the start position for reads mapped to the reverse strand:
-The BAM format writes the first base pair position of a read. This is not the first in the sequence of the fragment, instead it is the lowest value position the read covers: it is always the leftmost end seen from the reference genome. This is not where the read fragment started, the real position is *(the position in the BAM file) + (the length of the read) - 1*.
-The -1 is caused by the fact it is the position covered. We used 51 bp reads, so any read mapped to the reverse strand is actually starting 50 bp downstream, hence the +50 in the script. If you choose to use a different read length, alter this number accordingly. If you use some clipping, introducing variable read lengths, you will have to determine the length per read and use this number instead.
+The BAM format writes the first base pair position of a read. This is not the first in the sequence of the fragment, instead it is the lowest value position the read covers: it is always the leftmost end seen from the reference genome. This is not where the read fragment started, the real position is *(the position in the BAM file) + (the length of the read) - 1*. This should now be handled by a recent addition to the awk command used in the conversion.
 
 To run the sample extraction, run:  
 	> `./prepSamples.sh $INDIR $OUTDIR`
@@ -194,7 +190,7 @@ All steps for test samples have been described in the training steps, but now th
 - Feed the new data as argument 4 in the final training phase, 5th argument should be fractions obtained in the same way as for the training reference to check the estimation quality of SANEFALCON. If not available just point to the same file as the second argument, as a result no samples will match so SANEFALCON will assume these samples are female and thus unknown. 
 
 ### Alternative method
-This method is easier and was created later on. This allows implementation in pipelines for day to day use. The original method is ketp as it provides insight on the data and algorithm.
+This method is easier and was created later on. This allows implementation in pipelines for day to day use. The original method is kept as it provides insight on the data and algorithm.
 
 If you trained the model previously, it created a `outBaseName.model` file. This file describes how the nucleosome profile correlates with the fetal fraction and what linear formula to use to shift its output to the same scale as the original input reference fetal fraction data.
 
