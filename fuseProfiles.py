@@ -17,7 +17,6 @@ def getArgs():
     return args
 
 def splitcsv(csv):
-    
     csvdict = {}
     
     for line in csv:
@@ -29,7 +28,6 @@ def splitcsv(csv):
     return csvdict
 
 def main(args):
-    
     up = splitcsv(args.up)
     down = splitcsv(args.down)
     
@@ -38,7 +36,6 @@ def main(args):
         upPos = up[sample]
         upPos.reverse()
         downPos = down[sample]
-        
         profiles = [sample] + upPos[:-1] + downPos
         
         print ','.join(profiles)
