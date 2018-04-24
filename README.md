@@ -1,5 +1,3 @@
-[![Gitter](https://badges.gitter.im/rstraver/sanefalcon.svg)](https://gitter.im/rstraver/sanefalcon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) 
-
 # SANEFALCON
 ### Single reAds Nucleosome-basEd FetAL fraCtiON
 #### Calculating the fetal fraction for noninvasive prenatal testing based on genome-wide nucleosome profiles
@@ -12,7 +10,6 @@ This document is meant to guide you using SANEFALCON. For information on the alg
 - I created this hoping it would be useful. If you can't use it, it's not useful. Please let me know of any serious trouble you ran into if you feel there is a mistake on my end.
 - I tried my best at making a readme/manual on how to use SANEFALCON. I can imagine it is rather overwhelming. If you do not understand what to do somewhere, let me know so I can update this README or the wiki.
 - This implementation is not well done, I know. It's not user friendly, it's difficult to use and it's not as fast as it could be. It's a prototype of the method. If I had enough time I'd love to do a proper (re-)implementation but my current contract does not last forever.
-- I created a chat linked to this project on [gitter.im](https://gitter.im/rstraver/sanefalcon). Please use this to discuss this project. Anyone can join using a *free* GitHub account. Click the link or the badge above to join.
 - There is an overview diagram at the bottom of this page. Don't forget to use it to understand where you are and where you should be heading.
 - Commands you should enter into a terminal are shown as a code block with a > in front, like so:  
 	> `./example.sh`
@@ -180,16 +177,16 @@ s2. Test reference data
 
 If supplied, it will directly analyze your test samples if they were provided in the same formats as the training samples (arguments s1 and s2). The script will match sample names in nucleosome profile files with names in the reference files, taking the first column for each as containing the names. The reference data should contain the estimated fetal fraction based on an existing method in the second column, for example the chromosome Y frequency for male pregnancies. The output will provide a plot showing the correlation profile and a scatterplot with the estimated fraction using SANEFALCON vs the reference values where available.
 
-## Testing
+## 4 Testing
 
-### Original method
+### 4A Original method
 All steps for test samples have been described in the training steps, but now the subset splitting and nucleosome detection steps can be skipped:
 
 - Obtain read start positions
 - Get nucleosome profiles, now use the profile based on all training samples (subsets) combined
 - Feed the new data as argument 4 in the final training phase, 5th argument should be fractions obtained in the same way as for the training reference to check the estimation quality of SANEFALCON. If not available just point to the same file as the second argument, as a result no samples will match so SANEFALCON will assume these samples are female and thus unknown. 
 
-### Alternative method
+### 4B Alternative method
 This method is easier and was created later on. This allows implementation in pipelines for day to day use. The original method is kept as it provides insight on the data and algorithm.
 
 If you trained the model previously, it created a `outBaseName.model` file. This file describes how the nucleosome profile correlates with the fetal fraction and what linear formula to use to shift its output to the same scale as the original input reference fetal fraction data.
