@@ -179,14 +179,14 @@ If supplied, it will directly analyze your test samples if they were provided in
 
 ## 4 Testing
 
-### 4A Original method
+### 4a Original method
 All steps for test samples have been described in the training steps, but now the subset splitting and nucleosome detection steps can be skipped:
 
 - Obtain read start positions
 - Get nucleosome profiles, now use the profile based on all training samples (subsets) combined
 - Feed the new data as argument 4 in the final training phase, 5th argument should be fractions obtained in the same way as for the training reference to check the estimation quality of SANEFALCON. If not available just point to the same file as the second argument, as a result no samples will match so SANEFALCON will assume these samples are female and thus unknown. 
 
-### 4B Alternative method
+### 4b Alternative method
 This method is easier and was created later on. This allows implementation in pipelines for day to day use. The original method is kept as it provides insight on the data and algorithm.
 
 If you trained the model previously, it created a `outBaseName.model` file. This file describes how the nucleosome profile correlates with the fetal fraction and what linear formula to use to shift its output to the same scale as the original input reference fetal fraction data.
